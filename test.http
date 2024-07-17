@@ -60,5 +60,5 @@ Content-Type: application/json
 ### 404
 GET http://localhost:5080/users/
 
-### 404
+### 405
 PUT http://localhost:5080/products/
