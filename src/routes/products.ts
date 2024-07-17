@@ -29,7 +29,8 @@ export function createProductsRouter(executor: CommandExecutor) {
     .get('/', asyncRoute(async function (req, res) {
       res.json(await executor.execute(productListQuery()));
     }));
-  router.post('/', async function (req, res) {
+
+  router.post('/', asyncRoute(async function (req, res) {
     const dto = req.body;
     const { error, value } = productAddValidator.validate(dto);
 
@@ -39,7 +40,7 @@ export function createProductsRouter(executor: CommandExecutor) {
     }
 
     res.json(await executor.execute(productAddCommand(value)));
-  })
+  }));
 
   router.all('/', methodNotAllowed('GET', 'POST'));
 
