@@ -1,0 +1,64 @@
+### GET request to example server
+GET http://localhost:5080/products/
+
+###
+POST http://localhost:5080/products/
+Content-Type: application/json
+
+{
+  "name": "Product 1",
+  "description": "Super awesome product",
+  "price": "100.00",
+  "stock": "30"
+}
+###
+POST http://localhost:5080/products/vFoglXuPY-z7A_fsRWwH7/sell
+Content-Type: application/json
+
+{
+  "amount": "5"
+}
+###
+POST http://localhost:5080/products/vFoglXuPY-z7A_fsRWwH7/restock
+Content-Type: application/json
+
+{
+  "amount": "5"
+}
+###
+POST http://localhost:5080/orders
+Content-Type: application/json
+
+{
+  "customerId": "foo",
+  "products": [
+    {
+      "id": "vFoglXuPY-z7A_fsRWwH7",
+      "amount": 4
+    }
+  ]
+}
+
+####### Invalid requests
+###
+POST http://localhost:5080/products/
+Content-Type: application/json
+
+{
+  "name": "Product 1",
+  "description": "Super awesome product",
+  "stock": "30"
+}
+###
+POST http://localhost:5080/products/XXX/restock
+Content-Type: application/json
+
+{
+  "amount": "-30"
+}
+
+### 404
+GET http://localhost:5080/users/
+
+### 404
+PUT http://localhost:5080/products/
